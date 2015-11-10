@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flex Basis</title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+        background-color: #CCC;
+        font-family: Arial, sans-serif;
+      }
+
+      section {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      .colonne, #bouton {
+        border-radius: 5px;
+        border: 2px solid;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .colonne {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: white;
+        color: white;
+        margin: 10% 10px 10px 10px;
+        flex-grow: 1;
+      }
+
+      .colonne:first-of-type {
+        flex-grow: 2;
+      }
+
+      #bouton {
+        background-color: rgba(0, 0, 0, 0.2);
+        font-size: 1em;
+        margin: 10% auto;
+        border: none;
+        display: block;
+        position: fixed;
+      }
+
+      #bouton:hover {
+
+      }
+    </style>
+  </head>
+
+  <body>
+
+<!-- Flex-box permet de savoir de combien d'espace chaque colonne a besoin, padding et margin compris, PUIS répartit l'espace restant suivant les propriétés grow ou shrink attribuée. Si on fixe une propriété "flex-grow: 2" à une div enfant, sa largeur va être égale à celle de deux divs, SI toutes les divs ont le même contenu. Mais on perd ce ratio si un autre enfant a un contenu plus important, puisque sa largeur va s'adapter à son contenu. Pour fixer ça, on utilise flex-basis. Flex-basis = 0 indique à une div qu'elle doit ignorer la distribution d'espace par défaut entre les enfants. /!\ les marges et bordures sont à prendre en compte ! Cf. exemple.
+
+Au niveau de la syntaxe, 2 possibilités :
+
+nom {
+  flex-grow: n;
+  flex-shrink: n;
+  flex-basis: n;
+(% ou pixels)
+}
+
+nom {
+  flex: <flex-grow> <flex-shrink> <flex-basis>;
+} -->
+    <section class="flex">
+    <div class="colonne" id="div1">
+      Div 1 avec un flex-grow de 2
+    </div>
+
+    <div class="colonne" id="div2">
+      Div 2 avec un flex-grow de 1
+    </div>
+
+    <div class="colonne" id="div3">
+      Div 3 avec un flex-grow de 1 et plus de texte !
+    </div>
+    </section>
+
+    <section class="demo">
+      <button id="bouton" onclick="changeFlex()" type="button">
+        Avec un flex-basis à 0 !
+      </button>
+    </section>
+
+    <script type="text/javascript">
+      var bouton = document.getElementById("bouton");
+      var div1 = document.getElementById("div1");
+      var div2 = document.getElementById("div2");
+      var div3 = document.getElementById("div3");
+
+      function changeFlex() {
+        div1.style.flexBasis = "0";
+        div2.style.flexBasis = "0";
+        div3.style.flexBasis = "0";
+      }
+    </script>
+
+  </body>
+
+</html>
